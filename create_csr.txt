@@ -28,6 +28,20 @@ spec:
   - key encipherment
   groups:
   - system authenticated 
+
+2nd example:
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: example-csr
+spec:
+  request: <base64_encoded_csr_content>
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+    - digital signature
+    - key encipherment
+    - client auth
+
 Replace <csr_name> with a name for your CSR and <base64_encoded_csr> with the base64-encoded content of your CSR file (<csr_file>.csr).
 
 Submit the CSR: Apply the YAML manifest using kubectl apply -f <manifest_file>.yaml or create the CSR directly using kubectl create -f <manifest_file>.yaml.
