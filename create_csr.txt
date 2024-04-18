@@ -13,6 +13,9 @@ Follow the prompts to enter the information requested, such as country, state, o
 
 Save the CSR: Save the CSR file (<csr_file>.csr) generated in the previous step.
 Create a Kubernetes CSR Object: You can now create a Kubernetes CSR object using the kubectl create command or by applying a YAML manifest.
+
+cat <csr-name>.csr | base64 -w 0
+
 Here's an example YAML manifest for a Kubernetes CSR object:
 
 apiVersion: certificates.k8s.io/v1
@@ -41,6 +44,20 @@ spec:
     - digital signature
     - key encipherment
     - client auth
+
+3rd Example:
+---
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: akshay
+spec:
+  groups:
+  - system:authenticated
+  request: <Paste the base64 encoded value of the CSR file>
+  signerName: kubernetes.io/kube-apiserver-client
+  usages:
+  - client auth
 
 Replace <csr_name> with a name for your CSR and <base64_encoded_csr> with the base64-encoded content of your CSR file (<csr_file>.csr).
 
