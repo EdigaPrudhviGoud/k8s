@@ -1,0 +1,3 @@
+Least privilege principle:
+1.Limit Node Access: We should limit exposure of the control plane and nodes to internet. If K*S running on cloud, it is likely that in some cases you won't be able to access the control plane anyway.
+Minimise host OS footprint
