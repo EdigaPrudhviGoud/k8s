@@ -9,6 +9,13 @@ Minimise host OS footprint:
 3.Restrict User privileges from privilege escalation by editing sudoers anf sshd_config file
 4.Remove obsolete packages and services
       systemctl list-units --type service
+      apt remove <package-name>
 5.Restrict kernel modules:
       Modules can manually loaded into kernel using modprobe or insmod
             lsmod -> list all modules
+            cat /etc/modprobe.d/blacklist.conf
+            blacklist <module-name>      //Edit the above file by adding a module name
+            EX:blacklist sctp/dccp      //reboot after doing the changes to take effect
+6.Disbale Open Ports:
+      rm /lib/systemd/system/*.service
+      rm /etc/systemd/system/*.service
