@@ -3,4 +3,7 @@ Least privilege principle:
 ->For Self hosted clusters or in some managed k8s providers, provising nodes in private network is one way to achieve this. 
 ->And also with public access disabled and access using VPN. 
 -> Security groups by allowing specific IPs to access
-Minimise host OS footprint
+2.Minimise host OS footprint
+3. Restrict User privileges
+4.Remove obsolete packages and services
+      systemctl list-units --type service
