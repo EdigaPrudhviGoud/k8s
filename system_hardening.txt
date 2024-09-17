@@ -26,3 +26,8 @@ Attach policies -> IAM group -> Add users to IAM group
 IAM Role allows us to securely grant access to an AWS service to act on other services in the AWS account.
 
 Attach IAM policy -> To Role -> Role attached to EC2
+
+7.Minimize N/W access:
+Use Firewalls and security group.
+
+8.
