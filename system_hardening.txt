@@ -19,3 +19,10 @@ Minimise host OS footprint:
 6.Disbale Open Ports:
       rm /lib/systemd/system/*.service
       rm /etc/systemd/system/*.service
+7.Minimize IAM Roles and Policies:
+Attach IAM policy -> User
+Attach policies -> IAM group -> Add users to IAM group
+
+IAM Role allows us to securely grant access to an AWS service to act on other services in the AWS account.
+
+Attach IAM policy -> To Role -> Role attached to EC2
