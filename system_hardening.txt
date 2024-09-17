@@ -4,6 +4,6 @@ Least privilege principle:
 ->And also with public access disabled and access using VPN. 
 -> Security groups by allowing specific IPs to access
 2.Minimise host OS footprint
-3. Restrict User privileges
+3. Restrict User privileges from privilege escalation by editing sudoers anf sshd_config file
 4.Remove obsolete packages and services
       systemctl list-units --type service
