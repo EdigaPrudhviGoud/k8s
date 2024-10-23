@@ -3,7 +3,7 @@ AWS CLI -The open-source AWS CLI is a really powerful resource. This enables our
 Prerequisite -1.AWS Account    2.IAM User     3.Access key ID and Secret access key
 Verification: aws --version
 
-2.aws configure
+2.aws configure - IAM User details which have required roles 
 Enter Access Key ID: <key>
 Enter Secret Access key: <key>
 Default region name:  <name>
@@ -41,7 +41,7 @@ iv)Specify EKS cluster to which the worker nodes will connect
 
 Connect to cluster
 
-6.eksctl create cluster 
+6.eksctl create cluster --help
     --name <>
     --version <>
     --region <>
@@ -51,3 +51,5 @@ Connect to cluster
 Description: nodes=How many worker nodes  
 
 7.eksctl delete cluster --name <>
+
+8.kubectl config view
