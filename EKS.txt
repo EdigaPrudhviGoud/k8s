@@ -22,6 +22,11 @@ cat ~/.aws/credentials
 aws_access_key_id=xxxxxxxxxxxxxxx
 aws_secret_access_key=xxxxxxxxxxx
 
+EKS doesn't manage worker nodes, we need to setup the worker nodes
+1.Self-Managed Nodes
+2.Managed Node Group
+3.Fargate - Severless architecture, Will create worker nodes on demand, No need to provision/maintain EC2
+
 6.eksctl create cluster 
     --name <>
     --version <>
