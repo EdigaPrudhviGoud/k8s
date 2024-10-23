@@ -27,6 +27,8 @@ EKS doesn't manage worker nodes, we need to setup the worker nodes
 2.Managed Node Group
 3.Fargate - Severless architecture, Will create worker nodes on demand, No need to provision/maintain EC2, automatically select optimal EC2 sizing
 
+Creating an EKS cluster:
+
 6.eksctl create cluster 
     --name <>
     --version <>
