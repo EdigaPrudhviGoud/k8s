@@ -53,3 +53,8 @@ Description: nodes=How many worker nodes
 7.eksctl delete cluster --name <>
 
 8.kubectl config view
+
+Service -> 1.Cluster IP - Cluster level
+           2.Nodeport - Node Level
+           3.Load Balancer - Creates EIP address so that Public can access which is costly
+Ingress - route traffic inside the cluster
