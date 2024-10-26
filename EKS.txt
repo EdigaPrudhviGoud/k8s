@@ -1,3 +1,5 @@
+Prerequisites: kubectl,eksctl,awscli
+
 1.Install AWSCLI
 AWS CLI -The open-source AWS CLI is a really powerful resource. This enables our interaction with the entire AWS service. Just by doing a few simple steps, we may operate our AWS account from anywhere.
 Prerequisite -1.AWS Account    2.IAM User     3.Access key ID and Secret access key
