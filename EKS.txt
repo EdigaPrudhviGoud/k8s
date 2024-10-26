@@ -48,7 +48,13 @@ Connect to cluster
     --nodegroup-name <>
     --node-type t2.micro
     --nodes 2 
+ 
 Description: nodes=How many worker nodes  
+
+ii)eksctl create cluster 
+        --name <>
+        --region <>
+        --fargate
 
 7.eksctl delete cluster --name <>
 
