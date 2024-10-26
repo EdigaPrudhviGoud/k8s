@@ -151,3 +151,18 @@ spec:
               name: service-2048
               port:
                 number: 80
+******************************************************************************************************************************************************
+***)B4 creating alb controller - configure IAM OIDC provider
+B4 creating alb controller we need to configure IAM OIDC provider because alb controller is a pod which uses ALB service in AWS
+export cluster_name=demo-cluster
+oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5) 
+
+Check if there is an IAM OIDC provider configured already
+    aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4\n
+If not, run the below command
+eksctl utils associate-iam-oidc-provider --cluster $cluster_name --approve
+******************************************************************************************************************************************************************
+How to setup alb add on
+
+
+
