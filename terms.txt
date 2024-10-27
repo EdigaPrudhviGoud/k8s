@@ -4,3 +4,16 @@ Context: A context is a configuration that tells kubectl which cluster to commun
 2.The two core integral parts of a container from your list are:
     Namespaces: Namespaces are a feature of the Linux kernel that provides isolation for processes. They allow multiple containers to run on the same host without interfering with each other by providing separate views of system resources (like process IDs, network interfaces, etc.).
     Control Groups (cgroups): Control Groups are another feature of the Linux kernel that manage and limit the resource usage of processes. They help ensure that a container does not consume more than its allocated share of system resources, such as CPU, memory, and I/O.
+
+3.ReplicaSet: A ReplicaSet's purpose is to maintain a stable set of replica Pods running at any given time. It is used by Deployment to perform that purpose in a higher-level concept.
+
+4. A Helm chart is a package that contains all the necessary resources to deploy an application to a k8s cluster. Helm takes the complexity out of the process and makes Kubernetes deployment extremely simple and easy to handle.
+
+5.Kubernetes controller manager is a control loop that monitors and regulates the state of a Kubernetes cluster
+
+6.Scheduler is responsible for scheduling pods on specific nodes as per the user-defined conditions
+
+6.Container Insights summarizes metrics and logs for Containerized applications. EKS Control Plane logs are not collected by CloudWatch container Insights.
+Which AWS service can you use to troubleshoot EKS Control Plane logs?  Cloudwatch logs
+
+kube-apiserver : The API server is a component of the Kubernetes control plane that exposes the Kubernetes API. The API server is the front end for the Kubernetes control plane.
