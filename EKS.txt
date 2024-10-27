@@ -170,7 +170,7 @@ ii) Create IAM Policy:
 aws iam create-policy \
     --policy-name AWSLoadBalancerControllerIAMPolicy \
     --policy-document file://iam_policy.json
-iii) Create IAM Role:
+iii) Create IAM Role: and attach IAM policy to that role
 eksctl create iamserviceaccount \
   --cluster=<your-cluster-name> \
   --namespace=kube-system \
