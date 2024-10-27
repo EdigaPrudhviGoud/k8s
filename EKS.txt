@@ -153,9 +153,12 @@ spec:
                 number: 80
 ******************************************************************************************************************************************************
 ***)B4 creating alb controller - configure IAM OIDC provider
-B4 creating alb controller we need to configure IAM OIDC provider because alb controller is a pod which uses ALB service in AWS
-export cluster_name=demo-cluster
-oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5) 
+Configuring an IAM OIDC (OpenID Connect) provider is essential before creating an AWS ALB (Application Load Balancer) controller because it allows the controller to authenticate and authorize requests using IAM roles. Here are the main reasons for this configuration:
+Security: The OIDC provider enables the ALB controller to verify the identity of users and services. This helps secure your application by ensuring that only authenticated users can access certain resources.
+
+Steps:
+    export cluster_name=demo-cluster
+    oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5) 
 
 Check if there is an IAM OIDC provider configured already
     aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4\n
