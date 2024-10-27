@@ -1,0 +1,2 @@
+Cluster: A cluster is the actual Kubernetes environment where your workloads run.
+Context: A context is a configuration that tells kubectl which cluster to communicate with, along with the necessary authentication details.
