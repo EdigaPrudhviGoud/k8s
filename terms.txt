@@ -1,9 +1,12 @@
 1.Cluster: A cluster is the actual Kubernetes environment where your workloads run.
 Context: A context is a configuration that tells kubectl which cluster to communicate with, along with the necessary authentication details.
 
-2.The two core integral parts of a container from your list are:
-    Namespaces: Namespaces are a feature of the Linux kernel that provides isolation for processes. They allow multiple containers to run on the same host without interfering with each other by providing separate views of system resources (like process IDs, network interfaces, etc.).
-    Control Groups (cgroups): Control Groups are another feature of the Linux kernel that manage and limit the resource usage of processes. They help ensure that a container does not consume more than its allocated share of system resources, such as CPU, memory, and I/O.
+2.The core integral parts of a container:
+    i)Namespaces: Namespaces are a feature of the Linux kernel that provides isolation for processes. They allow multiple containers to run on the same host without interfering with each other by providing separate views of system resources (like process IDs, network interfaces, etc.).
+    ii)Control Groups (cgroups): Control Groups are another feature of the Linux kernel that manage and limit the resource usage of processes. They help ensure that a container does not consume more than its allocated share of system resources, such as CPU, memory, and I/O.
+    iii)Capabilities
+    iV) Linux security modules
+
 
 3.ReplicaSet: A ReplicaSet's purpose is to maintain a stable set of replica Pods running at any given time. It is used by Deployment to perform that purpose in a higher-level concept.
 
