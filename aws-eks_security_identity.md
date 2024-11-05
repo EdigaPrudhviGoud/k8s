@@ -37,3 +37,6 @@ aws sso login --profile aws-sso-tech
 aws --profile aws-sso-tech eks update-kubeconfig --region eu-west-1 --name ssodemo
 kubectl config get-contexts
 
+
+Similar to RBAC in K8S:
+Here will have IAM roles with attached policies, and these roles are attached to IAM users. Then we will a create role and attach it rolebinding with IAM USER.
