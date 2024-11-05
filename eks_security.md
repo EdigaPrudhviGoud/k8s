@@ -165,3 +165,18 @@ policyTypes	Specifies whether the policy applies to ingress, egress, or both.
 
 Conclusion
 Network policies in Amazon EKS, when used with a compatible CNI plugin like Calico, allow you to define precise rules for controlling traffic between pods, namespaces, and external resources. The ability to define both ingress and egress policies gives you fine-grained control over how your services communicate, improving security and fault tolerance.
+________________________________________________________________________________________________________________________________________________________________
+Data Security: EBS, EFS, RDS, Secrets with KMS key
+Always encrypt data at rest and transit. And also use certificates.
+
+Runtime Security:
+Guard duty: When your pod communicates with other IPs and having unsual behavior
+
+Audit trails:
+aws eks update-cluster-config \
+    --region <region-name> \
+    --name <cluster-name> \
+    --logging '{"clusterLogging":[{"types":["api","audit","authenticator","controllerManager","scheduler"],"enabled":true}]}'
+
+Cloudwatch log insights - To check role, rolebinding and other changes
+Cloud trail - Unsual activity on AWS APIs
