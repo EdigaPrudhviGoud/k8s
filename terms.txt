@@ -23,3 +23,10 @@ kube-apiserver : The API server is a component of the Kubernetes control plane t
 
 GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior for Amazon EKS Runtime and Log Monitoring Protection, S3 data events protection, Malware scannin protection, RDS login monitoring, and Lambda Networki Activity monitoring within your AWS accounts and workloads.
 AWS Security Hub
+
+
+Resource	Scope	Purpose
+Role	Namespace	Defines permissions within a specific namespace.
+RoleBinding	Namespace	Grants the permissions of a Role to a user or service account within a specific namespace.
+ClusterRole	Cluster-wide	Defines permissions that can be applied cluster-wide, across all namespaces.
+ClusterRoleBinding	Cluster-wide	Grants the permissions of a ClusterRole to a user or service account across the entire cluster.
