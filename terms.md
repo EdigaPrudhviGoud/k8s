@@ -24,11 +24,14 @@ kube-apiserver : The API server is a component of the Kubernetes control plane t
 GuardDuty is a threat detection service that continuously monitors for malicious activity and unauthorized behavior for Amazon EKS Runtime and Log Monitoring Protection, S3 data events protection, Malware scannin protection, RDS login monitoring, and Lambda Networki Activity monitoring within your AWS accounts and workloads.
 AWS Security Hub
 
-
-Resource	Scope	Purpose
-Role	Namespace	Defines permissions within a specific namespace.
-RoleBinding	Namespace	Grants the permissions of a Role to a user or service account within a specific namespace.
-ClusterRole	Cluster-wide	Defines permissions that can be applied cluster-wide, across all namespaces.
+______________________________________________________________________________________________________________________________________________
+Resource	        Scope	        Purpose
+Role	            Namespace	    Defines permissions within a specific namespace.
+RoleBinding	        Namespace	    Grants the permissions of a Role to a user or service account within a specific namespace.
+ClusterRole	        Cluster-wide	Defines permissions that can be applied cluster-wide, across all namespaces.
 ClusterRoleBinding	Cluster-wide	Grants the permissions of a ClusterRole to a user or service account across the entire cluster.
+________________________________________________________________________________________________________________________________________
 
-Taint a Node: Mark a node with a taint so that only pods with a matching toleration can be scheduled there.
+***)Taints are applied to nodes to prevent pods from being scheduled on them unless the pod has a matching toleration.
+Tolerations are applied to pods to allow them to be scheduled on nodes that have matching taints.
+This mechanism is useful for managing resource allocation, workload isolation, and node-specific constraints (e.g., special hardware like GPUs).
