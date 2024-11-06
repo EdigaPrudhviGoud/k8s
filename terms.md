@@ -44,4 +44,6 @@ PodAffinity Example:
 PodAntiAffinity Example:
     High availability: Ensuring that multiple replicas of a service are spread across multiple nodes or availability zones.
     Fault tolerance: Ensuring that critical services or workloads are not placed on the same node to reduce the risk of a single point of failure.
+
+CoreDNS is the default DNS service used in Amazon EKS (Elastic Kubernetes Service) clusters. It provides DNS resolution for Kubernetes services, allowing your Kubernetes workloads to discover and communicate with other services and pods within the cluster. CoreDNS replaces the older kube-dns service and provides better performance, extensibility, and flexibility.
     Resource isolation: Keeping certain workloads (e.g., batch jobs, or low-priority jobs) away from others to avoid resource contention.
