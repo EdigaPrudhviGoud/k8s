@@ -47,3 +47,7 @@ PodAntiAffinity Example:
 
 CoreDNS is the default DNS service used in Amazon EKS (Elastic Kubernetes Service) clusters. It provides DNS resolution for Kubernetes services, allowing your Kubernetes workloads to discover and communicate with other services and pods within the cluster. CoreDNS replaces the older kube-dns service and provides better performance, extensibility, and flexibility.
     Resource isolation: Keeping certain workloads (e.g., batch jobs, or low-priority jobs) away from others to avoid resource contention.
+
+
+For service resources, it provisions NLB.
+For Ingress resources, it provisions ALB.
