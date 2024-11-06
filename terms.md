@@ -49,5 +49,5 @@ CoreDNS is the default DNS service used in Amazon EKS (Elastic Kubernetes Servic
     Resource isolation: Keeping certain workloads (e.g., batch jobs, or low-priority jobs) away from others to avoid resource contention.
 
 
-For service resources, it provisions NLB.
-For Ingress resources, it provisions ALB.
+7.  i) For service resources, it provisions NLB.
+    ii)For Ingress resources, it provisions ALB.
