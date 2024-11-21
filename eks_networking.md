@@ -89,3 +89,7 @@ spec:
           port: 80
 ____________________________________________________________________________________________________
 IPv6
+Pods and services in eks have IPv6
+Nodes have both IPv4 and IPv6
+IPv6 only available at cluster creation. Pods in pvt subnets use an Egress-only IGW to communicate with external IPv6. Pods in pvt subnets uses primary network interface of node(then to NAT Gateway) to communicate with to communicate with external IPv4.
+
