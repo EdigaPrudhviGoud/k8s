@@ -116,7 +116,7 @@ Wait for 2-4 Min and Check the status of the control plane node and Coredns:
 kubectl get nodes
 kubectl get po -A
 
-Join the Worker Nodes to the Cluster
+******)Join the Worker Nodes to the Cluster
 
 In the Control Plane Node, create the token and copy the kubeadm join command (NOTE: The join command can also be found in the output from kubeadm init command):
 
@@ -129,8 +129,10 @@ In the Control Plane Node, view cluster status (Note: You may have to wait a few
 kubectl get nodes
 
 
-Join the master Nodes to the Cluster: 10.11.12.40: First master node
-kubeadm join 10.11.12.40:6443 --token isd5be.1y6zyjll2tza9elp --discovery-token-ca-cert-hash sha256:e52fd110ce6752c5d66941181de793329247898ee9d0dfc5cbbc3c234b9ee42d --control-plane --certificate-key <certificate-key>
+*******)Join the master Nodes to the Cluster: 10.11.12.40: First master node
+kubeadm token create --print-join-command
+	kubeadm join 10.11.12.40:6443 --token isd5be.1y6zyjll2tza9elp --discovery-token-ca-cert-hash sha256:e52fd110ce6752c5d66941181de793329247898ee9d0dfc5cbbc3c234b9ee42d 
+For the above command add ---->>> --control-plane --certificate-key <certificate-key>
 
 Certificate key: <certificate-key> (you will need to retrieve this from the first master node)
 root@llm-master1:/home/master1/Documents# kubeadm init phase upload-certs --upload-certs
