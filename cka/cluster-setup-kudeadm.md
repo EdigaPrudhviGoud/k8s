@@ -88,6 +88,7 @@ Initialize the Kubernetes cluster on the control plane node using kubeadm (Note:
 Initialize the First Control-Plane Node
 sudo kubeadm init \
   --pod-network-cidr=192.168.0.0/16 \
+  --control-plane-endpoint "10.11.12.40:6443" \
   --upload-certs 
 
 Set kubectl access:
@@ -139,3 +140,48 @@ root@llm-master1:/home/master1/Documents# kubeadm init phase upload-certs --uplo
 [upload-certs] Storing the certificates in Secret "kubeadm-certs" in the "kube-system" Namespace
 [upload-certs] Using certificate key:
 4ecc927103303781d4eed39fafdb0b2d39bef2d56e5fb9818150c9e31ed23084
+
+______________________________________________________________________________________________________________________________________________________________________________________________________
+************************************************************************************************************************************************************************************
+ERRORS:
+1.
+Master1>
+kubectl get no
+NAME          STATUS   ROLES           AGE     VERSION
+llm-master1   Ready    control-plane   5h8m    v1.32.0
+master2       Ready    <none>          3m17s   v1.32.0
+
+Master2> kubeadm join 10.11.12.40:6443 --token isd5be.1y6zyjll2tza9elp --discovery-token-ca-cert-hash sha256:e52fd110ce6752c5d66941181de793329247898ee9d0dfc5cbbc3c234b9ee42d --control-plane --certificate-key <certificate-key>
+
+ror":"rpc error: code = FailedPrecondition desc = etcdserver: can only promote a learner member which is in sync with leader"}
+I1227 23:50:51.421128   14300 etcd.go:584] [etcd] Promoting the learner c7f8df6beecbaa17 failed: etcdserver: can only promote a learner member which is in sync with leader
+{"level":"warn","ts":"2024-12-27T23:50:51.920285+0530","logger":"etcd-client","caller":"v3@v3.5.16/retry_interceptor.go:63","msg":"retrying of unary invoker failed","target":"etcd-endpoints://0xc0006fa3c0/10.11.12.40:2379","attempt":0,"error":"rpc error: code = FailedPrecondition desc = etcdserver: can only promote a learner member which is in sync with leader"}
+I1227 23:50:51.920440   14300 etcd.go:584] [etcd] Promoting the learner c7f8df6beecbaa17 failed: etcdserver: can only promote a learner member which is in sync with leader
+{"level":"warn","ts":"2024-12-27T23:50:52.421079+0530","logger":"etcd-client","caller":"v3@v3.5.16/retry_interceptor.go:63","msg":"retrying of unary invoker failed","target":"etcd-endpoints://0xc0006fa3c0/10.11.12.40:2379","attempt":0,"error":"rpc error: code = FailedPrecondition desc = etcdserver: can only promote a learner member which is in sync with leader"}
+I1227 23:50:52.421206   14300 etcd.go:584] [etcd] Promoting the learner c7f8df6beecbaa17 failed: etcdserver: can only promote a learner member which is in sync with leader
+{"level":"warn","ts":"2024-12-27T23:50:52.920619+0530","logger":"etcd-client","caller":"v3@v3.5.16/retry_interceptor.go:63","msg":"retrying of unary invoker failed","target":"etcd-endpoints://0xc0006fa3c0/10.11.12.40:2379","attempt":0,"error":"rpc error: code = FailedPrecondition desc = etcdserver: can only promote a learner member which is in sync with leader"}
+I1227 23:50:52.920758   14300 etcd.go:584] [etcd] Promoting the learner c7f8df6beecbaa17 failed: etcdserver: can only promote a learner member which is in sync with leader
+
+
+
+Solution:
+ON ALL NODES: 
+ufw disable
+ufw reload 
+
+**************************************************************************************************
+2.Just CHecking: etcd is in sync with master2
+Master1>
+sudo apt update
+sudo apt install etcd-client
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379   --cacert=/etc/kubernetes/pki/etcd/ca.crt   --cert=/etc/kubernetes/pki/etcd/server.crt   --key=/etc/kubernetes/pki/etcd/server.key   member list
+
+Both the ETCD are not leader
+root@llm-master1:/home/master1# ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379   --cacert=/etc/kubernetes/pki/etcd/ca.crt   --cert=/etc/kubernetes/pki/etcd/server.crt   --key=/etc/kubernetes/pki/etcd/server.key   member list
+4df3de4b88bd271, started, master2, https://10.11.12.37:2380, https://10.11.12.37:2379, false
+bb7b17b87d2df0cb, started, llm-master1, https://10.11.12.40:2380, https://10.11.12.40:2379, false
+
+Check etcd logs of both
+
+
+
