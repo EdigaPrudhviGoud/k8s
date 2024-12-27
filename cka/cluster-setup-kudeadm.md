@@ -127,3 +127,13 @@ sudo kubeadm join ...
 In the Control Plane Node, view cluster status (Note: You may have to wait a few moments to allow all nodes to become ready):
 
 kubectl get nodes
+
+
+Join the master Nodes to the Cluster: 10.11.12.40: First master node
+kubeadm join 10.11.12.40:6443 --token isd5be.1y6zyjll2tza9elp --discovery-token-ca-cert-hash sha256:e52fd110ce6752c5d66941181de793329247898ee9d0dfc5cbbc3c234b9ee42d --control-plane --certificate-key <certificate-key>
+
+Certificate key: <certificate-key> (you will need to retrieve this from the first master node)
+root@llm-master1:/home/master1/Documents# kubeadm init phase upload-certs --upload-certs
+[upload-certs] Storing the certificates in Secret "kubeadm-certs" in the "kube-system" Namespace
+[upload-certs] Using certificate key:
+4ecc927103303781d4eed39fafdb0b2d39bef2d56e5fb9818150c9e31ed23084
