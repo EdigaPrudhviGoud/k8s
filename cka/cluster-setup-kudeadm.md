@@ -1,9 +1,3 @@
-https://phoenixnap.com/kb/install-kubernetes-on-ubuntu
-https://hbayraktar.medium.com/how-to-install-kubernetes-cluster-on-ubuntu-22-04-step-by-step-guide-7dbf7e8f5f99
-
-
-
-
 Commands : SetUp K8s HA Cluster (Updated)
 Kubernetes Installation Process
 
@@ -44,12 +38,12 @@ sudo mkdir -p /etc/containerd
 
 
 8.Generate default containerd configuration and save to the newly created default file:
-sudo mkdir -p /etc/containerd
 containerd config default | sudo tee /etc/containerd/config.toml
 
 
 9.Restart containerd to ensure new configuration file usage:
 sudo systemctl restart containerd
+sudo systemctl enable containerd
 
 
 10.Verify that containerd is running.
@@ -65,17 +59,16 @@ sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
 
 13.Install dependency packages:
-sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-
+  sudo apt-get update && sudo apt-get install -y apt-transport-https curl ca-certificates gpg
 
 14.Download and add the GPG key:
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+# If the directory `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
+# sudo mkdir -p -m 755 /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 
 15.Add Kubernetes to the repository list:
-cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-deb https://apt.kubernetes.io/ kubernetes-xenial main
-EOF
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 
 16.Update package listings:
@@ -83,33 +76,45 @@ sudo apt-get update
 
 
 17.Install Kubernetes packages (Note: If you get a dpkg lock message, just wait a minute or two before trying the command again):
-sudo apt-get install -y kubelet=1.23.0-00 kubeadm=1.23.0-00 kubectl=1.23.0-00
-
+sudo apt-get install -y kubelet kubeadm kubectl
 
 18.Turn off automatic updates:
 sudo apt-mark hold kubelet kubeadm kubectl
 
+
 Log into both Worker Nodes to perform previous steps 1 to 18.
 
 Initialize the Kubernetes cluster on the control plane node using kubeadm (Note: This is only performed on the Control Plane Node):
-sudo kubeadm init --pod-network-cidr 192.168.0.0/16 --kubernetes-version 1.23.0
-
+Initialize the First Control-Plane Node
+sudo kubeadm init \
+  --pod-network-cidr=192.168.0.0/16 \
+  --upload-certs 
 
 Set kubectl access:
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubeadm join 10.11.12.40:6443 --token isd5be.1y6zyjll2tza9elp \
+	--discovery-token-ca-cert-hash sha256:e52fd110ce6752c5d66941181de793329247898ee9d0dfc5cbbc3c234b9ee42d 
+
 
 Test access to cluster:
 kubectl get nodes
+kubectl get po -A 
+Cluster Status: Node Notready and Coredns->Pending state
 
 Install the Calico Network Add-On -> On the Control Plane Node, install Calico Networking:
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+Reference: https://docs.tigera.io/calico/latest/getting-started/kubernetes/self-managed-onprem/onpremises
+
+NOTE: If you are using pod CIDR 192.168.0.0/16, skip to the next step. If you are using a different pod CIDR with kubeadm, no changes are required — Calico will automatically detect the CIDR based on the running configuration. For other platforms, make sure you uncomment the CALICO_IPV4POOL_CIDR variable in the manifest and set it to the same value as your chosen pod CIDR.
+
+kubectl apply -f calico.yaml
 
 
-Wait for 2-4 Min and Check the status of the control plane node:
+Wait for 2-4 Min and Check the status of the control plane node and Coredns:
 kubectl get nodes
-
+kubectl get po -A
 
 Join the Worker Nodes to the Cluster
 
