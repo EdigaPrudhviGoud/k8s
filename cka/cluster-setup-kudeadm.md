@@ -169,20 +169,23 @@ ON ALL NODES:
 ufw disable
 ufw reload 
 
-**************************************************************************************************
+***************************************************************************************************************************************8
 2.Just CHecking: etcd is in sync with master2
 Master1>
 sudo apt update
-sudo apt install etcd-client
-ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379   --cacert=/etc/kubernetes/pki/etcd/ca.crt   --cert=/etc/kubernetes/pki/etcd/server.crt   --key=/etc/kubernetes/pki/etcd/server.key   member list
+sudo apt install etcd-client 
 
-Both the ETCD are not leader
-root@llm-master1:/home/master1# ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379   --cacert=/etc/kubernetes/pki/etcd/ca.crt   --cert=/etc/kubernetes/pki/etcd/server.crt   --key=/etc/kubernetes/pki/etcd/server.key   member list
-4df3de4b88bd271, started, master2, https://10.11.12.37:2380, https://10.11.12.37:2379, false
-bb7b17b87d2df0cb, started, llm-master1, https://10.11.12.40:2380, https://10.11.12.40:2379, false
+Check Leader:
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key \
+  endpoint status --write-out=table
 
-Check etcd logs of both
+*************************************************************************************************************************************
+Warning: Check etcd logs of both
 {"level":"warn","ts":"2024-12-28T08:48:44.522403Z","caller":"rafthttp/probing_status.go:82","msg":"prober found high clock drift","round-tripper-name":"ROUND_TRIPPER_RAFT_MESSAGE","remote-peer-id":"4df3de4b88bd271","clock-drift":"1.123978766s","rtt":"15.900899ms"}
 {"level":"warn","ts":"2024-12-28T08:48:44.547948Z","caller":"rafthttp/probing_status.go:82","msg":"prober found high clock drift","round-tripper-name":"ROUND_TRIPPER_SNAPSHOT","remote-peer-id":"4df3de4b88bd271","clock-drift":"1.131406653s","rtt":"1.043106ms"}
 
+Solution: sudo date --set="2024-12-28 02:12:50"
 
