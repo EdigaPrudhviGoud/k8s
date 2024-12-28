@@ -182,6 +182,7 @@ root@llm-master1:/home/master1# ETCDCTL_API=3 etcdctl --endpoints=https://127.0.
 bb7b17b87d2df0cb, started, llm-master1, https://10.11.12.40:2380, https://10.11.12.40:2379, false
 
 Check etcd logs of both
-
+{"level":"warn","ts":"2024-12-28T08:48:44.522403Z","caller":"rafthttp/probing_status.go:82","msg":"prober found high clock drift","round-tripper-name":"ROUND_TRIPPER_RAFT_MESSAGE","remote-peer-id":"4df3de4b88bd271","clock-drift":"1.123978766s","rtt":"15.900899ms"}
+{"level":"warn","ts":"2024-12-28T08:48:44.547948Z","caller":"rafthttp/probing_status.go:82","msg":"prober found high clock drift","round-tripper-name":"ROUND_TRIPPER_SNAPSHOT","remote-peer-id":"4df3de4b88bd271","clock-drift":"1.131406653s","rtt":"1.043106ms"}
 
 
