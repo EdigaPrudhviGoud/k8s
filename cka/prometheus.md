@@ -14,5 +14,11 @@ helm repo update
 helm install grafana grafana/grafana
 kubectl expose service grafana --type=NodePort --target-port=3000 --name=grafana-ext
 
-Note:Get your 'admin' user password by running:
+Note:Get your 'admin user & password' by running:
+   kubectl get secret --namespace default prometheus-grafana -o jsonpath="{.data.admin-user}" | base64 --decode
    kubectl get secret --namespace default grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+
+Loki:
+helm repo add loki https://grafana.github.io/loki/charts
+helm repo update
+helm upgrade --install loki loki/loki-stack
