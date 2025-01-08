@@ -129,6 +129,10 @@ In the Control Plane Node, view cluster status (Note: You may have to wait a few
 
 kubectl get nodes
 
+-> ADD Label: 
+Node-Name: appian-dev5.machint.com
+k label node appian-dev5.machint.com node-role.kubernetes.io/worker=
+
 
 *******)Join the master Nodes to the Cluster: 10.11.12.40: First master node
 kubeadm token create --print-join-command
