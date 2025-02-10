@@ -21,5 +21,23 @@ Profile : Level 1 - Server
 ```bash
 cd /root/Assessor
 sh ./Assessor-CLI.sh -i -rd /var/www/html/ -nts -rp index
+
+##Select the below after running it
+#Benchmarks/Data-Stream Collections: CIS Ubuntu Linux 20.04 LTS Benchmark v2.0.1
+#Profile: Level 1 - Server
+```
+CIS-CAT Lite doesn't support k8s
+CIS-CAT pro support k8s
+
+###Kube-bench -> OpenSource CIS benchmark tool for k8s
+Install-> container,pod in k8s cluster, install kube-bench binary
+```
+curl -L https://github.com/aquasecurity/kube-bench/releases/download/v0.4.0/kube-bench_0.4.0_linux_amd64.tar.gz -o kube-bench_0.4.0_linux_amd64.tar.gz
+tar -xvf kube-bench_0.4.0_linux_amd64.tar.gz
 ```
 
+Run a kube-bench test now and see the results
+Run below command to run kube bench
+```
+ ./kube-bench --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml
+```
