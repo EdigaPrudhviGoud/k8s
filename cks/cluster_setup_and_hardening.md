@@ -6,7 +6,7 @@
 3.Container -> 
 4.Code ->
 
-##CIS(Center for Internet Security) Benchmarks:
+1.CIS(Center for Internet Security) Benchmarks:
 The CIS-CAT Lite tool helps organizations check if their systems meet security benchmarks recommended by CIS. It can assess the configurations of operating systems, software, and network devices against these security standards.
 The key features of CIS-CAT Lite include:
     1.Security Configuration Assessment: It assesses system configurations based on CIS benchmarks.
@@ -29,7 +29,7 @@ sh ./Assessor-CLI.sh -i -rd /var/www/html/ -nts -rp index
 CIS-CAT Lite doesn't support k8s
 CIS-CAT pro support k8s
 
-###Kube-bench -> OpenSource CIS benchmark tool for k8s
+ii)Kube-bench -> OpenSource CIS benchmark tool for k8s
 Install-> container,pod in k8s cluster, install kube-bench binary
 ```
 curl -L https://github.com/aquasecurity/kube-bench/releases/download/v0.4.0/kube-bench_0.4.0_linux_amd64.tar.gz -o kube-bench_0.4.0_linux_amd64.tar.gz
@@ -40,4 +40,14 @@ Run a kube-bench test now and see the results
 Run below command to run kube bench
 ```
  ./kube-bench --config-dir `pwd`/cfg --config `pwd`/cfg/config.yaml
+```
+
+2.K8S security primitives
+```
+Secure Hosts: SSH key based auth. , Password based auth. disabled 
+Restrict access to kube-apiserver 
+authentication -> files(usernames & pwds), files(usernames & tokens), Certificates, LDAP, SA
+authorization -> RBAC, attribute-ABAC, Node authorization, Webhook mode
+TLS certificates between components
+N/W policies
 ```
