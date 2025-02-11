@@ -60,3 +60,4 @@ curl -v -k https://<master-node-ip>:6443/api/v1/pods -u "user1:password123"
 curl -v -k https://<master-node-ip>:6443/api/v1/pods --header "Authorization: Bearer <user-token>"
 ```
 Similarly in the csv file we will replace the password with token for Static Token File(auth Mechanism) and pass it with the argument --token-auth-file=user-token-details.csv 
+![Auth Mechanisms-Basic](./auth_mechanisms-basic1.png)
