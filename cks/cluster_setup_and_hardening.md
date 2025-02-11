@@ -52,5 +52,11 @@ TLS certificates between components
 N/W policies
 ```
 i)Authentication: Securing access to k8s cluster with accounts(used by humans),SA(Used by services). K8S doesn't manage user accounts natively,it relies on an external source like a file with user details, or crts or a thrid party identity services like LDAP.
-Auth mechanisms : static password file, static token file, crts, thris party services(LDAP & kerberos)
-![Alt text](./auth_mechanisms-basic.png)
+##Auth mechanisms : static password file, static token file, crts, thris party services(LDAP & kerberos)
+![Auth Mechanisms-Basic](./auth_mechanisms-basic.png)
+Authenticate user:
+```
+curl -v -k https://<master-node-ip>:6443/api/v1/pods -u "user1:password123"
+curl -v -k https://<master-node-ip>:6443/api/v1/pods --header "Authorization: Bearer <user-token>"
+```
+Similarly in the csv file we will replace the password with token for Static Token File(auth Mechanism) and pass it with the argument --token-auth-file=user-token-details.csv 
