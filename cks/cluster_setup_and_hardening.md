@@ -53,4 +53,4 @@ N/W policies
 ```
 i)Authentication: Securing access to k8s cluster with accounts(used by humans),SA(Used by services). K8S doesn't manage user accounts natively,it relies on an external source like a file with user details, or crts or a thrid party identity services like LDAP.
 Auth mechanisms : static password file, static token file, crts, thris party services(LDAP & kerberos)
-![Alt text](images/auth_mechanisms-basic.png)
+![Alt text](./auth_mechanisms-basic.png)
