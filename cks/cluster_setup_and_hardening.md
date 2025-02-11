@@ -81,7 +81,7 @@ The generated token after decode we can see the expiry is 1 hour from the time w
 
 3.TLS
 Symmetric -> public key(lock) and key are sent here
-![Asymmetric Encryption-SSH](./auth_mechanisms-basic2.png)
+![Asymmetric Encryption-SSH](./asymmetric-encryption-ssh.png)
 ```
 openssl genrsa -out my-bank.key 1024
 openssl rsa -in my-bank.key -pubout > mybank.pem
