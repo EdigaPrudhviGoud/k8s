@@ -61,3 +61,33 @@ curl -v -k https://<master-node-ip>:6443/api/v1/pods --header "Authorization: Be
 ```
 Similarly in the csv file we will replace the password with token for Static Token File(auth Mechanism) and pass it with the argument --token-auth-file=user-token-details.csv 
 ![Auth Mechanisms-Basic](./auth_mechanisms-basic2.png)
+```
+Note: This is not recommended in a production environment. This is only for learning purposes. Also, note that this approach is deprecated in Kubernetes version 1.19 and is no longer available in later releases.
+```
+Two types of accounts: User accounts(Used by Humans), SA(Used by machines)
+SA:
+For pod.yaml
+serviceAccountName: <sa-name>
+
+Every NS has a default sa and secret object with token associated with it.
+From v1.24 KEP-2799: Reduction of Secret-based SA tokens
+: 
+```
+k create sa <sa-name>
+k get sa
+k create token <sa-name>
+```
+The generated token after decode we can see the expiry is 1 hour from the time we created the token.
+
+3.TLS
+Symmetric -> public key(lock) and key are sent here
+![Asymmetric Encryption-SSH](./auth_mechanisms-basic2.png)
+```
+openssl genrsa -out my-bank.key 1024
+openssl rsa -in my-bank.key -pubout > mybank.pem
+#CA - The below command creates csr(Certificate Signing Request) file
+openssl req -new -key my-bank.key -out my-bank.csr -subj "/C=US/ST=CA/O=MyOrg, Inc./CN=my-bank.com"
+```
+Private key will be on the web server
+How did the browsers know that CA is legitimate? What if it is certified by Fake CA?
+The CAs themselves have a set of public and private key pairs. The CAs use their pvt keys to sign the crts. The public keys of all the CAs are built into the browsers. The browsers use the public key of the CA to validate crt was actually signed by CA themselves. 
