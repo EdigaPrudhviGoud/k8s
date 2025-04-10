@@ -17,6 +17,8 @@ To find the 12 digit AWS account ID using the AWS CLI, you can run this command:
 aws sts get-caller-identity
 ```
 Note:Starting with EKS 1.30, the EBS CSI Driver use a default StorageClass object configured using Amazon EBS GP3 volume type. Run the following command to confirm:
+Note:No, you cannot use ReadWriteMany for Amazon Elastic Block Store (EBS) volumes in Kubernetes. EBS volumes only support the ReadWriteOnce access mode. This means that they can be mounted as read-write by a single node at a time.
+
 kubectl get storageclass
 NAME                           PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
 ebs-csi-default-sc (default)   ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   96s
