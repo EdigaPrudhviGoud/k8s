@@ -10,8 +10,8 @@ i)eksctl
 ii)AWS Management Console
 iii)AWS CLI
 ```
-i)
-aws eks describe-addon-versions --addon-name aws-ebs-csi-driver
+i)Install EKSCTL
+ii)eksctl utils associate-oidc-provider --cluster <cluster-name> --aprove
 eksctl create iamserviceaccount \
         --name ebs-csi-controller-sa \
         --namespace kube-system \
@@ -20,6 +20,7 @@ eksctl create iamserviceaccount \
         --role-only \
         --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
         --approve
+eksctl addon --name aws-ebs-csi-driver --cluster <cluster-name> --service-account-role-arn arn:aws:iam:401231317770:role/AmazonEKS_EBS_CSI_Driver --fo
 ```
 ```
 iii)
