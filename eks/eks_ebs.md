@@ -16,6 +16,11 @@ eksctl addon --name aws-ebs-csi-driver --cluster <cluster-name> --service-accoun
 To find the 12 digit AWS account ID using the AWS CLI, you can run this command:
 aws sts get-caller-identity
 ```
+Note:Starting with EKS 1.30, the EBS CSI Driver use a default StorageClass object configured using Amazon EBS GP3 volume type. Run the following command to confirm:
+kubectl get storageclass
+NAME                           PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+ebs-csi-default-sc (default)   ebs.csi.aws.com         Delete          WaitForFirstConsumer   true                   96s
+
 vi ebs-storageclass.yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
