@@ -21,6 +21,9 @@ eksctl create iamserviceaccount \
         --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
         --approve
 eksctl addon --name aws-ebs-csi-driver --cluster <cluster-name> --service-account-role-arn arn:aws:iam:401231317770:role/AmazonEKS_EBS_CSI_Driver --force
+#401231317770: The AWS account ID that owns the IAM role.
+To find the 12 digit AWS account ID using the AWS CLI, you can run this command:
+aws sts get-caller-identity
 ```
 ```
 iii)
