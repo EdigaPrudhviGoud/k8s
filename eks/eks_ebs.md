@@ -11,7 +11,7 @@ ii)AWS Management Console
 iii)AWS CLI
 ```
 i)Install EKSCTL
-ii)eksctl utils associate-oidc-provider --cluster <cluster-name> --aprove
+ii)eksctl utils associate-oidc-provider --cluster <cluster-name> --aprove --region <region-name>
 eksctl create iamserviceaccount \
         --name ebs-csi-controller-sa \
         --namespace kube-system \
@@ -37,6 +37,7 @@ provisioner: ebs.csi.aws.com
 volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: gp3   # You can also use gp2, io1, sc1, st1
+allowVolumeExpansion: true
 
 kubectl apply -f ebs-storageclass.yaml
 ```
