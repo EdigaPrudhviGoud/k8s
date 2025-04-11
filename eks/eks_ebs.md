@@ -1,6 +1,11 @@
 https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html
 https://www.eksworkshop.com/docs/fundamentals/storage/ebs/ebs-csi-driver
 ```
+[pod]------>[s3]
+|
+~ ---->[SA]---->[OIDC Provider]---->[AWS IAM Role]
+```
+```
 i)Install EKSCTL
 ii)Check IAM OIDC provider is associated with cluster
 oidc_id=$(aws eks describe cluster --name <cluster-name> --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
