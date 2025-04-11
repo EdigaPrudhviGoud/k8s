@@ -1,3 +1,14 @@
+```
+EKS Pod Identity vs IRSA:
+
+Feature	                              IRSA	                    EKS Pod Identity
+Setup complexity	                  Higher	                Lower
+Requires OIDC provider	              ✅ Yes	                ❌ No
+Fine-grained permissions	          ✅ Yes	                ✅ Yes
+Native EKS integration	              ❌ Not deeply integrated	✅ Fully integrated
+Automatic credential injection	      ❌ No	                    ✅ Yes
+```
+
 Prerequisites: kubectl,eksctl,awscli
 
 Fargate Profiles: 
