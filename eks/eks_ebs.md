@@ -2,8 +2,8 @@ https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html
 https://www.eksworkshop.com/docs/fundamentals/storage/ebs/ebs-csi-driver
 ```
 [pod]------>[s3]
-|
-~ ---->[SA]---->[OIDC Provider]---->[AWS IAM Role]
+  |
+   ~-> [SA]---->[OIDC Provider]---->[AWS IAM Role]
 ```
 ```
 i)Install EKSCTL
